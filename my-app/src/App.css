@@ -1,65 +1,209 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: #0f0f13;
-  color: #f0f0f0;
-  font-family: 'Segoe UI', sans-serif;
+/* ============================================
+   GLOBAL
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  background: #0a0a0a;
+  color: #f0f0f0;
+  font-family: 'Georgia', serif;
+  min-height: 100vh;
+}
+
+
+/* ============================================
+   PAGE
+   ============================================ */
 .page {
-  max-width: 800px;
+  max-width: 420px;
   margin: 0 auto;
-  padding: 60px 24px;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 24px 32px;
 }
 
 .heading {
-  font-size: 32px;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-align: center;
   margin-bottom: 40px;
   opacity: 0.9;
+  text-transform: capitalize;
 }
 
+
+/* ============================================
+   HOME — GRID & BOXES
+   ============================================ */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
 }
 
 .box {
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 28px 20px;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
   cursor: pointer;
-  transition: transform 0.15s, background 0.2s, border-color 0.2s;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  transition: border-color 0.2s, transform 0.15s;
 }
 
 .box:hover {
-  transform: translateY(-4px);
+  border-color: #6b0f1a;
+  transform: scale(1.02);
 }
 
 .box.active {
-  color: white;
+  border-color: #8b1a1a;
+  box-shadow: 0 0 16px rgba(139, 26, 26, 0.4);
 }
 
 .box-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.box-author {
   font-size: 13px;
-  opacity: 0.6;
+  text-align: center;
+  padding: 10px 8px;
+  opacity: 0.7;
+  background: #0f0f0f;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
 }
 
-.selection {
-  margin-top: 40px;
-  font-size: 16px;
-  opacity: 0.6;
+.box-image {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
 }
 
-.selection strong {
-  opacity: 1;
+.box-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+
+/* ============================================
+   HOME — FOOTER BUTTONS
+   ============================================ */
+.footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 50px;
+  border: 1px solid #6b0f1a;
+  background: transparent;
+  color: #f0f0f0;
+  font-size: 15px;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background: #6b0f1a;
   color: white;
+}
+
+.btn-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-next:disabled:hover {
+  background: transparent;
+  color: #f0f0f0;
+}
+
+
+/* ============================================
+   STORY PAGE
+   ============================================ */
+.story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.story-image {
+  background: #141414;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.story-text {
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: 0.7;
+  letter-spacing: 0.02em;
+}
+
+
+/* ============================================
+   HELP MODAL
+   ============================================ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal {
+  background: #141414;
+  border: 1px solid #6b0f1a;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.modal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+  padding-left: 16px;
+  border-left: 2px solid #6b0f1a;
 }
