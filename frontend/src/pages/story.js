@@ -21,12 +21,11 @@ export default function Story() {
 
   return (
     <div className="page">
-
-      <h1 className="heading">{story.title}</h1>
-
       <div className="story-content">
-        <div className="story-image" />
-        <p className="story-text">{story.description}</p>
+        <h1 className="story-headning">{story.title}</h1>
+        <div className="story-box">
+          <p className="story-text">{story.description}</p>
+        </div>
       </div>
 
       <div className="footer">

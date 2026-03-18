@@ -288,3 +288,50 @@ body {
   padding-left: 16px;
   border-left: 2px solid #6b0f1a;
 }
+
+/* ============================================
+   STORY PAGE
+   ============================================ */
+.story-headning {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  font-family: "Cinzel", serif;
+  color: #E2E2E0;
+  padding-bottom: 2px;
+}
+
+.story-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+}
+
+.story-box {
+  position: relative;
+  width: 100%;
+  height: 88vh;
+  box-sizing: border-box;
+  padding: 4% 4%;
+
+  border: 4px solid #6E1E24;
+  border-radius: 28px;
+}
+
+.story-box::before {
+  content: "";
+  position: absolute;
+  inset: 1.5%;
+  border: 1.5px solid #6E1E24;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.story-text {
+  padding: 2%;
+  color: #E2E2E0;
+  font-family: "Crimson Pro", serif;
+  font-size: 18px;
+}
