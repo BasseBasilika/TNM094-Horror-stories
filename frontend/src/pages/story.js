@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import "../App.css";
+import "../story.css";
 
 const STORIES = [
   { id: 1, title: "Mycket Läskig",  description: "En mycket läskig historia..." },
