@@ -14,7 +14,7 @@ fs.readFile(inputPath, 'utf8', (err, data) => {
     }
 
     //sätt ett keyword som ska hittas
-    const keyword = "han"
+    const keyword = ["han", "och"]
 
     //gör allt till lowercase så att Han == han kan jämföras
     const lowerText = data.toLowerCase();
@@ -27,17 +27,21 @@ fs.readFile(inputPath, 'utf8', (err, data) => {
 
     //gå igenom alla ord var och en och se om det matchar keyword
     for (let i = 0; i < split.length; i++) {
-        if (split[i] == keyword) {
-            split[i] = keyword.toUpperCase();
+        for (let j = 0; j < keyword.length; j++) {
+            if (split[i] == keyword[j]) {
+                split[i] = keyword[j].toUpperCase();
+            }
         }
+
     }
 
     //skriv tillbaka texten som den var innan
     const join = split.join("");
 
+
     const result = join.replace(/(^\w|(?<=\.\s*)\w)/g, (char) =>
-    char.toUpperCase()
-);
+        char.toUpperCase()
+    );
 
     //skriv allt till output filen
     fs.writeFile(outputPath, result, (err) => {
