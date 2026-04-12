@@ -49,7 +49,7 @@ export default function Home() {
           <div
             key={story.id}
             className="box"
-            onClick={() => navigate(`/story/${story.id}`)}
+            onClick={() => navigate(`/story/${story.id}`)}  // storyid/chapter/page --> gör bättre senare när bookmark function ska jobbas på
           >
             <p className="box-title">{story.title}</p>
             <div className="box-image">
