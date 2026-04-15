@@ -62,9 +62,11 @@ def main():
         source = sr.Microphone(sample_rate=16000)
 
     # Load / Download model
+
+    #fick ta bort en del av detta för det blev engelska????
     model = args.model
-    if args.model != "large" and not args.non_english:
-        model = model + ".en"
+    #if args.model != "large" and not args.non_english:
+    #model = model + ".en"
     audio_model = whisper.load_model(model)
 
     record_timeout = args.record_timeout
