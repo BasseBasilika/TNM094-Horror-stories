@@ -19,7 +19,7 @@ const STORIES = [
 const Bookmark = [
   { id: 1, currentChapter: 1,  currentPage: 1 },
   { id: 2, currentChapter: 1,  currentPage: 2 },
-  ,
+  
 ];
 
 
@@ -61,7 +61,8 @@ export default function Story() {
 
   fetch(`/books/${theStory.filename}/${chapternr}.txt`)   // kanske behövs ändras senare story.filename/chapter/pagenr
     .then(res => res.text())
-    .then(text => setChapterText(text));
+    .then(text => setChapterText(text))
+    .catch(() => setChapterText("Detta är placeholder text för storyn."));
 
   }, [theStory]);
 
