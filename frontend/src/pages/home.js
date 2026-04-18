@@ -14,14 +14,14 @@ const SCARY_STORIES = [
 ];
 
 const CHILDREN_STORIES = [
-  { id: 9,  title: "Trollet i skogen",  image: "/images/bild1.jpg" },
-  { id: 10, title: "Enhörningens resa", image: "/images/bild2.jpg" },
-  { id: 11, title: "Magiska havet",     image: "/images/bild3.jpg" },
-  { id: 12, title: "Draken",            image: "/images/bild4.jpg" },
-  { id: 13, title: "Trollet",           image: "/images/bild1.jpg" },
-  { id: 14, title: "Resa",              image: "/images/bild2.jpg" },
-  { id: 15, title: "Magiska",           image: "/images/bild3.jpg" },
-  { id: 16, title: "Pyro",              image: "/images/bild4.jpg" },
+  { id: 9,  title: "Trollet i skogen",  image: "/images/bild8.jpg" },
+  { id: 10, title: "Enhörningens resa", image: "/images/bild6.jpg" },
+  { id: 11, title: "Magiska havet",     image: "/images/bild7.jpg" },
+  { id: 12, title: "Draken",            image: "/images/bild5.jpg" },
+  { id: 13, title: "Trollet",           image: "/images/bild8.jpg" },
+  { id: 14, title: "Resa",              image: "/images/bild6.jpg" },
+  { id: 15, title: "Magiska",           image: "/images/bild7.jpg" },
+  { id: 16, title: "Pyro",              image: "/images/bild5.jpg" },
 ];
 
 
