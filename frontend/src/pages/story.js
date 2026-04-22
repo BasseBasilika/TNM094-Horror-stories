@@ -19,25 +19,21 @@ const STORIES = [
 const Bookmark = [
   { id: 1, currentChapter: 1,  currentPage: 1 },
   { id: 2, currentChapter: 1,  currentPage: 2 },
-  ,
 ];
 
-
 // Make a page of text
-function splitChapter(text, ArbitrarySize, pagenr) {
+function splitChapter(text) {
+  const words = text.split(" ").filter(word => word.length > 0);
 
-  const words = text.split(" ")
-  const noEmptyStrsArr = words.filter(item => item.length > 0)
+  const pages = [];
+  let index = 0;
 
-  const start = ArbitrarySize * (pagenr - 1)
-
-  const pageoftext = [];
-  for (let i = 0; i < ArbitrarySize; i++) {
-    const chunk = noEmptyStrsArr.slice(i + start, i + ArbitrarySize + start);
-    pageoftext.push(chunk);
+  while (index < words.length) {
+    pages.push(words[index]);
+    index++;
   }
 
-  return pageoftext;
+  return pages.join(" ");
 }
 
 export default function Story() {
@@ -45,39 +41,28 @@ export default function Story() {
   const navigate = useNavigate();
 
   // ladda kapitel och bookmark info. 
-  const userInfo = Bookmark.find(b => b.id === Number(id));
   const bookmark = Bookmark.find(b => b.id === Number(id));
-  const [pageNr, setPageNr] = useState(bookmark?.currentPage || 1);
-
-  const chapternr = userInfo?.currentChapter || 1;
-
+  const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
   
   // läs in Story data
   const theStory = storyData.books.find(s => s.id === Number(id));
   const [chapterText, setChapterText] = useState("");
 
+  const maxChapter = theStory.chapteramt;
+
   useEffect(() => {
-  if (!theStory) return;
+    if (!theStory) return;
 
-  fetch(`/books/${theStory.filename}/${chapternr}.txt`)   // kanske behövs ändras senare story.filename/chapter/pagenr
-    .then(res => res.text())
-    .then(text => setChapterText(text));
+    fetch(`/books/${theStory.filename}/${chapterNr}.txt`)
+      .then(res => res.text())
+      .then(text => setChapterText(text));
 
-  }, [theStory]);
+}, [theStory, chapterNr]); // 👈 chapternr must be here
 
   // nuvarande hur många ord per sida
   // jag tycker vi väljer 2 st storlekar. En för webbsida och en för mobil (och kanske 1 för ipad) så får man konsekvent storlek på allt, vilket underlättar kodning senare
-  const ArbitrarySize = 400
 
-  const textVector = splitChapter(chapterText, ArbitrarySize, pageNr)
-
-  console.log(chapterText)
-
-
-  const textOnPage = textVector
-    .slice(0, 1)
-    .flat()
-    .join(" ");
+  const textVector = splitChapter(chapterText)
 
   return (
     <div className="page">
@@ -89,18 +74,24 @@ export default function Story() {
         <h1 className="story-headning">{theStory.title}</h1>
         <h2 className="story-headning">{theStory.author}</h2>
         <div className="story-box">
-          <div className="story-text">{textOnPage}</div>
+          <div className="story-text">{textVector}</div>
         </div>
       </div>
 
     <div className="footer">
       <button 
           className="btn"
-          onClick={() => setPageNr(p => Math.max(1, p - 1))} > ←
+          disabled={chapterNr <= 1}
+          onClick={() => 
+            setChapterNr(p => Math.max(1, p - 1))
+          } > Förra kapitel
       </button>
       <button 
           className="btn"
-          onClick={() => setPageNr(p => Math.max(1, p + 1))} > → 
+          disabled={chapterNr >= maxChapter}
+          onClick={() => 
+            setChapterNr(p => Math.max(1, p + 1))
+          } > Nästa kapitel 
       </button>
     </div>
       
