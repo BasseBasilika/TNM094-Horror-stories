@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useParams, useNavigate } from "react-router-dom";
 import "../story.css";
 import storyData from '../data/books.json';
