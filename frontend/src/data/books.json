@@ -1,18 +1,22 @@
-{ "books": [ 
-    { 
-        "id": 1,
-        "title": "Apans Tass",
-        "filename": "monkeypaw",
-        "author": "W.W. Jacobs",
-        "chapteramt": 3
-    },
+{
+  "books": [
+    { "id": 1,  "title": "Apans Tass",           "filename": "monkeypaw",   "author": "W.W. Jacobs",     "chapteramt": 3 },
+    { "id": 2,  "title": "The Night Wire",       "filename": "nightwire",   "author": "H. F. Arnold",    "chapteramt": 1 },
 
-    { 
-        "id": 2,
-        "title": "The Night Wire",
-        "filename": "nightwire",
-        "author": "H. F. Arnold",
-        "chapteramt": 1
-    } 
-] 
+    { "id": 3,  "title": "Placeholder 3",        "filename": "story3",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 4,  "title": "Placeholder 4",        "filename": "story4",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 5,  "title": "Placeholder 5",        "filename": "story5",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 6,  "title": "Placeholder 6",        "filename": "story6",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 7,  "title": "Placeholder 7",        "filename": "story7",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 8,  "title": "Placeholder 8",        "filename": "story8",      "author": "Okänd",           "chapteramt": 1 },
+
+    { "id": 9,  "title": "Placeholder 9",        "filename": "story9",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 10, "title": "Placeholder 10",       "filename": "story10",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 11, "title": "Placeholder 11",       "filename": "story11",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 12, "title": "Placeholder 12",       "filename": "story12",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 13, "title": "Placeholder 13",       "filename": "story13",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 14, "title": "Placeholder 14",       "filename": "story14",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 15, "title": "Placeholder 15",       "filename": "story15",     "author": "Okänd",           "chapteramt": 1 },
+    { "id": 16, "title": "Placeholder 16",       "filename": "story16",     "author": "Okänd",           "chapteramt": 1 }
+  ]
 }
