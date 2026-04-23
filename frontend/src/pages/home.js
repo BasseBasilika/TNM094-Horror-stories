@@ -86,7 +86,7 @@ export default function Home({ category }) {
           <div className={`home-modal ${themeClass}`} onClick={e => e.stopPropagation()}>
             <h2 className="home-modal-title">Hjälp</h2>
             <ul className="home-modal-list">
-              <li>Klicka på en bild för att öppna historien. Bläddra mellan sidor med pilarna.</li>
+              <li>Klicka på en bild för att öppna historien. Scrolla för att hitta fler historier.</li>
             </ul>
             <button className="home-close-btn" onClick={() => setShowHelp(false)}>
               Stäng
