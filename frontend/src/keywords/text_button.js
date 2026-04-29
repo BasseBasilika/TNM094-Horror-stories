@@ -25,7 +25,7 @@ function play(soundFile) {
 
 
   function renderStoryText(text) {
-    // const lastTriggered = useRef(null); // avoid re-triggering same word
+    let lastTriggered = null; // avoid re-triggering same word
     
     function handleMove(e) {
       let element
@@ -36,15 +36,15 @@ function play(soundFile) {
         element =  document.elementFromPoint(e.clientX, e.clientY);
       }
       
-      if (element?.dataset?.trigger) { // && element.dataset.trigger !== lastTriggered.current maybe
-      //lastTriggered.current = element.dataset.trigger; maybe add later
+      if (element?.dataset?.trigger && element.dataset.trigger !== lastTriggered) { // && element.dataset.trigger !== lastTriggered.current maybe
+      lastTriggered = element.dataset.trigger;
       play(element.dataset.trigger);
     }
     }
     
-    /*function handlePointerEnd() {
-      lastTriggered.current = null; // reset when finger lifts
-    }*/
+    function handleEnd() {
+      lastTriggered = null; // reset when finger lifts
+    }
 
 
     const words = text.split(/\s+/); //split on space
@@ -54,6 +54,8 @@ function play(soundFile) {
       onPointerMove={handleMove}
       onTouchMove={handleMove}
       onTouchStart={unlockAudio}
+      onTouchEnd={handleEnd}
+      onPointerUp={handleEnd}
       style={{ touchAction: "none" }} // prevents scroll interfering
     >
       {words.map((word, i) => {
