@@ -1,0 +1,79 @@
+{
+  "soundData": [
+    {
+      "id": 1,
+      "filename": "monkeypaw",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "backgroundmusic1.wav",
+              "startAt": 0.00,
+              "stopAt": 0.7,
+              "loop": true,
+              "volume": 0.8
+            },
+            {
+              "src": "fireplace.wav",
+              "startAt": 0.2,
+              "stopAt": 0.4,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "src": "soundeffect1.wav",
+              "startAt": 0.7,
+              "stopAt": 0.80,
+              "loop": true,
+              "volume": 0.3
+            }
+          ]
+          
+        },
+
+        {
+          "chapter": 2,
+          "music": [
+            {
+              "src": "/sounds/monkeypaw/dark-ambient.mp3",
+              "startAt": 0.15,
+              "loop": true,
+              "volume": 0.5
+            }
+          ]
+        },
+
+        {
+          "chapter": 3,
+          "music": [
+            {
+              "src": "/sounds/monkeypaw/dark-ambient.mp3",
+              "startAt": 0.15,
+              "loop": true,
+              "volume": 0.5
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "filename": "nightwire",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "/sounds/nightwire/static.mp3",
+              "startAt": 0.1,
+              "loop": true,
+              "volume": 0.25
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
