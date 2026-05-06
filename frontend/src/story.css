@@ -71,10 +71,11 @@
     border: 4px solid #6E1E24;
     padding: clamp(20px, 4vw, 40px);
     border-radius: 28px;
-
-    max-height: 80 vh;
-    overflow-y: auto;   /* scrolling */
-    overflow-x: hidden; 
+    touch-action: none;
+    overflow-y: auto;
+    max-height: 65dvh;
+    
+    
 }
 
 .story-box::before {
@@ -86,17 +87,36 @@
 }
 
 .story-text {
-    color: #E2E2E0;
-    font-family: "Crimson Pro", serif;
-    font-size: 18px;
-    white-space: pre-wrap;
+  color: #E2E2E0;
+  font-family: "Crimson Pro", serif;
+  white-space: pre-wrap;
+  font-size: clamp(22px, 5.5vw, 28px);
+  line-height: 2.2;
 }
 
-.word-button{
-  background: #6E1E24;
-  border: 1px solid #E2E2E0;
+.word-button {
+
   border-radius: 4px;
   font: inherit;
   color: inherit;
   cursor: pointer;
+  pointer-events: all;
+  display: inline-block;  /* ← makes padding actually expand the box */
+ .word-button {
+  padding: 6px 8px;
+  margin: -6px -4px;
+}
+  line-height: inherit;   /* ← don't break the line rhythm */
+}
+
+.story-text span {
+  pointer-events: all;
+  padding: 8px 4px;
+  margin: -8px -4px;
+  display: inline-block;
+}
+
+.word-trail {
+  color: #6b9fd4;
+  transition: color 0.2s;
 }
