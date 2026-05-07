@@ -22,7 +22,8 @@ const STORIES = [
 const Bookmark = [
   { id: 1, currentChapter: 1, currentPage: 1 },
   { id: 2, currentChapter: 1, currentPage: 2 },
-];
+]; 
+
 
 function splitChapter(text) {
   const words = text.split(" ").filter(word => word.length > 0);
@@ -39,12 +40,14 @@ function splitChapter(text) {
 export default function Story() {
 
   // hitta id från URL
-  const { id } = useParams();
+  const { id, currentChapter } = useParams();
+  const chapterNr = Number(currentChapter);
+
   const navigate = useNavigate();
   const [started, setStarted] = useState(false);
 
-  const bookmark = Bookmark.find(b => b.id === Number(id));
-  const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
+  //const bookmark = Bookmark.find(b => b.id === Number(id));
+  //const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
 
   // läs in Story data
   const theStory = storyData.books.find(s => s.id === Number(id));
@@ -149,14 +152,18 @@ export default function Story() {
         <button
           className="btn"
           disabled={chapterNr <= 1}
-          onClick={() => setChapterNr(p => Math.max(1, p - 1))}
+          onClick={() => {
+            window.location.href = `/story/${id}/${chapterNr - 1}`;
+          }}
         >
           Förra kapitel
         </button>
         <button
           className="btn"
           disabled={chapterNr >= maxChapter}
-          onClick={() => setChapterNr(p => Math.max(1, p + 1))}
+          onClick={() => {
+            window.location.href = `/story/${id}/${chapterNr + 1}`;
+          }}
         >
           Nästa kapitel
         </button>

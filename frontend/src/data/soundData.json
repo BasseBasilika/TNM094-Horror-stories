@@ -10,23 +10,23 @@
             {
               "src": "backgroundmusic1.wav",
               "startAt": 0.00,
-              "stopAt": 0.7,
+              "stopAt": 0.4,
               "loop": true,
               "volume": 0.8
             },
             {
               "src": "fireplace.wav",
-              "startAt": 0.05,
-              "stopAt": 0.2,
+              "startAt": 0.001,
+              "stopAt": 0.1,
               "loop": true,
-              "volume": 0.9
+              "volume": 1
             },
             {
-              "src": "soundeffect1.wav",
-              "startAt": 0.7,
-              "stopAt": 1,
+              "src": "SoftMusic.mp3",
+              "startAt": 0.4,
+              "stopAt": 1.1,
               "loop": true,
-              "volume": 0.4
+              "volume": 0.7
             }
           ]
           
@@ -36,10 +36,11 @@
           "chapter": 2,
           "music": [
             {
-              "src": "/sounds/monkeypaw/dark-ambient.mp3",
-              "startAt": 0.15,
+              "src": "SoftMusic.mp3",
+              "startAt": 0.0,
+              "stopAt": 0.5,
               "loop": true,
-              "volume": 0.5
+              "volume": 0.7
             }
           ]
         },
