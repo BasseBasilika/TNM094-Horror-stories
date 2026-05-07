@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../story.css";
 import storyData from '../data/books.json';
 import { useEffect, useState, useRef } from "react";
-import renderStoryText from "../keywords/text_button.js"; 
+import RenderStoryText from "../keywords/text_button.js"; 
 import musicInfo from "../soundManager/songInfo.js";
 import playMusic from "../soundManager/playSong.js";
 import soundData from '../data/soundData.json'
