@@ -26,6 +26,7 @@ export default function musicInfo(id, chapterNr){
     // currently experimental to see if the correct thing plays
     for (var i = 0; i < songs.length; i++){
         const audio = new Audio(`/books/${fileName}/${songs[i].src}`)
+        audio.loop = songs[i].loop ?? false;
         const startpoint = songs[i].startAt
         const endpoint = songs[i].stopAt
 
