@@ -10,23 +10,23 @@
             {
               "src": "backgroundmusic1.wav",
               "startAt": 0.00,
-              "stopAt": 0.4,
+              "stopAt": 0.405,
               "loop": true,
               "volume": 0.8
             },
             {
               "src": "fireplace.wav",
-              "startAt": 0.001,
-              "stopAt": 0.1,
+              "startAt": 0.00,
+              "stopAt": 0.05,
               "loop": true,
-              "volume": 1
+              "volume": 0.5
             },
             {
               "src": "SoftMusic.mp3",
-              "startAt": 0.4,
+              "startAt": 0.405,
               "stopAt": 1.1,
               "loop": true,
-              "volume": 0.7
+              "volume": 0.30
             }
           ]
           
@@ -38,9 +38,16 @@
             {
               "src": "SoftMusic.mp3",
               "startAt": 0.0,
-              "stopAt": 0.5,
+              "stopAt": 0.51,
               "loop": true,
-              "volume": 0.7
+              "volume": 0.30
+            },
+            {
+              "src": "sinisterMusic.mp3",
+              "startAt": 0.51,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.20
             }
           ]
         },
@@ -49,10 +56,25 @@
           "chapter": 3,
           "music": [
             {
-              "src": "/sounds/monkeypaw/dark-ambient.mp3",
-              "startAt": 0.15,
+              "src": "sinisterMusic.mp3",
+              "startAt": 0.0,
+              "stopAt": 1.1,
               "loop": true,
-              "volume": 0.5
+              "volume": 0.30
+            },
+            {
+              "src": "ClockTicking.wav",
+              "startAt": 0.52,
+              "stopAt": 0.7,
+              "loop": false,
+              "volume": 0.20
+            },
+            {
+              "src": "violentWind.wav",
+              "startAt": 0.9,
+              "stopAt": 1,
+              "loop": true,
+              "volume": 0.30
             }
           ]
         }
@@ -67,10 +89,32 @@
           "chapter": 1,
           "music": [
             {
-              "src": "/sounds/nightwire/static.mp3",
-              "startAt": 0.1,
+              "src": "dreamscape.mp3",
+              "startAt": 0.0,
+              "stopAt": 0.50,
+              "loop": false,
+              "volume": 0.20
+            },
+            {
+              "src": "OfficeAmbience2.wav",
+              "startAt": 0.05,
+              "stopAt": 0.3,
               "loop": true,
-              "volume": 0.25
+              "volume": 0.30
+            },
+            {
+              "src": "veryAmbient.wav",
+              "startAt": 0.50,
+              "stopAt": 0.8,
+              "loop": true,
+              "volume": 0.40
+            },
+            {
+              "src": "fruitCakeHotel.mp3",
+              "startAt": 0.8,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.30
             }
           ]
         }

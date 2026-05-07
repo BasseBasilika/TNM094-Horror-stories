@@ -45,7 +45,7 @@ export default function playMusic(
 
       //musicArray[i].pause();
 
-      fadeOut(musicArray[i].audio);
+      fadeOut(musicArray[i].audio, musicArray[i].volume);
       //musicArray[i].currentTime = 0;
 
       hasPlayed[i] = false;
@@ -74,12 +74,12 @@ function fadeIn(audio, targetVolume, speed = 0.05) {
 }
 
 
-function fadeOut(audio, speed = 0.035) {
+function fadeOut(audio, targetVolume, speed = 0.035) {
 
   const fade = setInterval(() => {
 
     if (audio.volume > speed) {
-      audio.volume -= speed;
+      audio.volume -= targetVolume * speed;
     }
 
     else {

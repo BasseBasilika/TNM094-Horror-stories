@@ -69,7 +69,7 @@ export default function Home({ category }) {
           <div
             key={story.id}
             className="home-box"
-            onClick={() => navigate(`/story/${story.id}`)}
+            onClick={() => navigate(`/story/${story.id}/1`)}
           >
             <p className="home-box-title">{story.title}</p>
             <div className="home-box-image">
