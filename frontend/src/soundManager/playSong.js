@@ -1,38 +1,94 @@
+export default function playMusic(
+  storyBoxRef,
+  audioEnabledRef,
+  musicRef
+) {
 
+  if (!audioEnabledRef.current) return;
 
-export default function playMusic(songArray, startPoints, songindex, thisstartat, endPoints, hasPlayed){
+  const box = storyBoxRef.current;
 
-  console.log(songindex);
+  if (!box) return;
 
-  console.log(hasPlayed)
+  const maxScroll =
+    box.scrollHeight - box.clientHeight;
 
-  if(thisstartat === startPoints[songindex]){
-    console.log("same song")
-    return;
-  }
+  const scrollPercent =
+    maxScroll <= 0
+      ? 0
+      : box.scrollTop / maxScroll;
 
-  endPoints.forEach((element, index) => {
-    //console.log("element: "+ element)
-    //console.log("index: "+ index)
-    //console.log("startIndex: "+ startPoints[index])
+  const {
+    musicArray,
+    startPoints,
+    endPoints,
+    hasPlayed
+  } = musicRef.current;
 
-    console.log("element: "+ element + ", startIndex: "+ startPoints[songindex])
-    console.log(element === startPoints[songindex])
+  for (let i = 0; i < musicArray.length; i++) {
 
-    if(element === startPoints[songindex]){
-      console.log("herehere")
-      songArray[index].pause()
-      return;
+    const shouldPlay =
+      scrollPercent >= startPoints[i] &&
+      scrollPercent < endPoints[i];
+
+    // PLAY
+    if (shouldPlay && !hasPlayed[i]) {
+
+      console.log()
+      fadeIn(musicArray[i].audio, musicArray[i].volume);
+
+      hasPlayed[i] = true;
     }
-  });
 
-  console.log("new song playing: " + songindex)
-  songArray[songindex].play()
+    // STOP
+    if (!shouldPlay && hasPlayed[i]) {
 
-  // arbitrary test
-  if(songindex == 2){
-    console.log("truetrue")
-    songArray[0].pause() // doesn't work
+      //musicArray[i].pause();
+
+      fadeOut(musicArray[i].audio);
+      //musicArray[i].currentTime = 0;
+
+      hasPlayed[i] = false;
+    }
   }
+}
 
+function fadeIn(audio, targetVolume, speed = 0.05) {
+
+  audio.volume = 0;
+
+  audio.play();
+
+  const fade = setInterval(() => {
+
+    if (audio.volume < targetVolume - speed) {
+      audio.volume += speed * targetVolume;
+    }
+
+    else {
+      audio.volume = targetVolume;
+      clearInterval(fade);
+    }
+
+  }, 50);
+}
+
+
+function fadeOut(audio, speed = 0.035) {
+
+  const fade = setInterval(() => {
+
+    if (audio.volume > speed) {
+      audio.volume -= speed;
+    }
+
+    else {
+      audio.volume = 0;
+      audio.pause();
+      audio.currentTime = 0;
+
+      clearInterval(fade);
+    }
+
+  }, 50);
 }

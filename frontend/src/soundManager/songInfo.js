@@ -29,7 +29,10 @@ export default function musicInfo(id, chapterNr){
         const startpoint = songs[i].startAt
         const endpoint = songs[i].stopAt
 
-        songArray.push(audio);
+        songArray.push({
+            audio: audio,
+            volume: songs[i].volume ?? 0.8
+        });
         startPoints.push(startpoint);
         endPoints.push(endpoint);
     }

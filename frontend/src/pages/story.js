@@ -70,60 +70,35 @@ export default function Story() {
 
   // för tracking om vilken music som ska spelas
   const [thisstartat, setStartat] = useState("");
-  const audioEnabledRef = useRef(null);
-  
-  
-
-  const [musicArray, startPoints, endPoints] = musicInfo(id, chapterNr);
-  
-  const hasPlayed = musicArray.map(() => false);  
-  
-  const enableAudio = () => {
-    audioEnabledRef.current = true;
-    handleScroll() // starts any music that might be active at that time
-  };
-
-  // scroll tracking
+  const audioEnabledRef = useRef(false);
   const storyBoxRef = useRef(null);
 
-  // idea is to change currentstartat and return it to see if you need ot go into this function when scrolling
-  function handleScroll(){
+  const musicRef = useRef({
+    musicArray: [],
+    startPoints: [],
+    endPoints: [],
+    hasPlayed: []
+  });
 
-    if(audioEnabledRef.current !== true) return;
+  useEffect(() => {
+    const [musicArray, startPoints, endPoints] = musicInfo(id, chapterNr);
 
-    const box = storyBoxRef.current;
+    musicRef.current = {
+      musicArray,
+      startPoints,
+      endPoints,
+      hasPlayed: musicArray.map(() => false)
+    };
+  }, [id, chapterNr]);
 
-    if (!box) return;
-
-    const scrollTop = box.scrollTop;
-    const maxScroll = box.scrollHeight - box.clientHeight;
-
-    const scrollPercent = scrollTop / maxScroll;
-    
-    for (let i = 0; i < startPoints.length; i++) {
-
-      const nextStart = startPoints[i + 1];
-
-      // start a new song
-      if (
-        scrollPercent >= startPoints[i] &&
-        (!nextStart || scrollPercent < nextStart)
-      ) {
-        //console.log("Play track:", i);
-
-        // start music
-        setStartat(startPoints[i])
-        playMusic(musicArray, startPoints, i, thisstartat, endPoints, hasPlayed)
-        hasPlayed[i] = true;
-        break;
-      }
-      
-      //console.log("Startat: " + thisstartat);
-    }
-  }
-
-  // nuvarande hur många ord per sida
-  // jag tycker vi väljer 2 st storlekar. En för webbsida och en för mobil (och kanske 1 för ipad) så får man konsekvent storlek på allt, vilket underlättar kodning senare
+  const enableAudio = () => {
+    audioEnabledRef.current = true;
+    playMusic(
+      storyBoxRef,
+      audioEnabledRef,
+      musicRef
+    );
+  };
 
   const textVector = splitChapter(chapterText)
 
@@ -140,7 +115,13 @@ export default function Story() {
         <div
           className="story-box"
           ref={storyBoxRef}
-          onScroll={handleScroll}
+          onScroll={() =>
+            playMusic(
+              storyBoxRef,
+              audioEnabledRef,
+              musicRef
+            )
+          }
         >
           <div className="story-text">
             {renderStoryText(chapterText)}

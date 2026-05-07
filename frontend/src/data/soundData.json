@@ -16,17 +16,17 @@
             },
             {
               "src": "fireplace.wav",
-              "startAt": 0.2,
-              "stopAt": 0.4,
+              "startAt": 0.05,
+              "stopAt": 0.2,
               "loop": true,
-              "volume": 0.3
+              "volume": 0.9
             },
             {
               "src": "soundeffect1.wav",
               "startAt": 0.7,
-              "stopAt": 0.80,
+              "stopAt": 1,
               "loop": true,
-              "volume": 0.3
+              "volume": 0.4
             }
           ]
           
