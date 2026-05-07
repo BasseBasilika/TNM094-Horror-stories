@@ -20,22 +20,18 @@ const STORIES = [
 
 // Actar som en sorts save function för användaren för nu, mer test än riktig (ksk json fil senare?).
 const Bookmark = [
-  { id: 1, currentChapter: 1,  currentPage: 1 },
-  { id: 2, currentChapter: 1,  currentPage: 2 },
+  { id: 1, currentChapter: 1, currentPage: 1 },
+  { id: 2, currentChapter: 1, currentPage: 2 },
 ];
 
-// Make a page of text
 function splitChapter(text) {
   const words = text.split(" ").filter(word => word.length > 0);
-
   const pages = [];
   let index = 0;
-
   while (index < words.length) {
     pages.push(words[index]);
     index++;
   }
-
   return pages.join(" ");
 }
 
@@ -45,8 +41,8 @@ export default function Story() {
   // hitta id från URL
   const { id } = useParams();
   const navigate = useNavigate();
+  const [started, setStarted] = useState(false);
 
-  // ladda kapitel och bookmark info. 
   const bookmark = Bookmark.find(b => b.id === Number(id));
   const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
 
@@ -60,7 +56,6 @@ export default function Story() {
   // ladda info om story
   useEffect(() => {
     if (!theStory) return;
-
     fetch(`/books/${theStory.filename}/${chapterNr}.txt`)
       .then(res => res.text())
       .then(text => setChapterText(text));
@@ -100,10 +95,31 @@ export default function Story() {
     );
   };
 
-  const textVector = splitChapter(chapterText)
+  const textVector = splitChapter(chapterText);
 
   return (
     <div className="page">
+
+      {!started && (
+        <div
+          onClick={() => setStarted(true)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 10,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0,0,0,0.7)",
+            cursor: "pointer"
+          }}
+        >
+          <p style={{ color: "#f0f0f0", fontFamily: "Georgia", fontSize: "22px", letterSpacing: "0.1em" }}>
+            Tryck för att börja
+          </p>
+        </div>
+      )}
+
       <div className="footer">
         <button className="btn" onClick={() => navigate("/")}>← Hem</button>
         <button className="btn" onClick={() => enableAudio()}> SÄTT PÅ MUSIK </button>
@@ -124,28 +140,27 @@ export default function Story() {
           }
         >
           <div className="story-text">
-            {renderStoryText(chapterText)}
+            <RenderStoryText text={chapterText} />
           </div>
         </div>
       </div>
 
-    <div className="footer">
-      <button 
+      <div className="footer">
+        <button
           className="btn"
           disabled={chapterNr <= 1}
-          onClick={() => 
-            setChapterNr(p => Math.max(1, p - 1))
-          } > Förra kapitel
-      </button>
-      <button 
+          onClick={() => setChapterNr(p => Math.max(1, p - 1))}
+        >
+          Förra kapitel
+        </button>
+        <button
           className="btn"
           disabled={chapterNr >= maxChapter}
-          onClick={() => 
-            setChapterNr(p => Math.max(1, p + 1))
-          } > Nästa kapitel 
-      </button>
-    </div>
-      
+          onClick={() => setChapterNr(p => Math.max(1, p + 1))}
+        >
+          Nästa kapitel
+        </button>
+      </div>
     </div>
   );
 }
