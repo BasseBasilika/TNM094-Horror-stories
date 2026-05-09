@@ -92,7 +92,7 @@
               "src": "dreamscape.mp3",
               "startAt": 0.0,
               "stopAt": 0.50,
-              "loop": false,
+              "loop": true,
               "volume": 0.20
             },
             {
@@ -119,6 +119,24 @@
           ]
         }
       ]
+    },
+    {
+      "id": 9,
+      "filename": "elvesandshoemaker",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "dreamscape.mp3",
+              "startAt": 0.0,
+              "stopAt": 0.90,
+              "loop": false,
+              "volume": 0.20
+            }
+          ]
+        }
+      ]
     }
-  ]
-}
+
+  ]}

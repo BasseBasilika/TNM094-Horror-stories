@@ -5,36 +5,12 @@ import { useEffect, useState, useRef } from "react";
 import RenderStoryText from "../keywords/text_button.js"; 
 import musicInfo from "../soundManager/songInfo.js";
 import playMusic from "../soundManager/playSong.js";
-import soundData from '../data/soundData.json'
 
-const STORIES = [
-  { id: 1, title: "Mycket Läskig",  description: "En mycket läskig historia..." },
-  { id: 2, title: "Ganska Läskig", description: "En ganska läskig historia..." },
-  { id: 3, title: "Mellan Läskig", description: "En mellan läskig historia..." },
-  { id: 4, title: "Lite Läskig",   description: "En lite läskig historia..." },
-  { id: 5, title: "Mycket Läskig",  description: "En mycket läskig historia..." },
-  { id: 6, title: "Ganska Läskig", description: "En ganska läskig historia..." },
-  { id: 7, title: "Mellan Läskig", description: "En mellan läskig historia..." },
-  { id: 8, title: "Lite Läskig",   description: "En lite läskig historia..." },
-];
-
-// Actar som en sorts save function för användaren för nu, mer test än riktig (ksk json fil senare?).
+// Används ej just nu, sparat som test
 const Bookmark = [
-  { id: 1, currentChapter: 1, currentPage: 1 },
-  { id: 2, currentChapter: 1, currentPage: 2 },
+  { id: 1, currentChapter: 1 },
+  { id: 2, currentChapter: 1 },
 ]; 
-
-
-function splitChapter(text) {
-  const words = text.split(" ").filter(word => word.length > 0);
-  const pages = [];
-  let index = 0;
-  while (index < words.length) {
-    pages.push(words[index]);
-    index++;
-  }
-  return pages.join(" ");
-}
 
 
 export default function Story() {
@@ -67,7 +43,6 @@ export default function Story() {
 
 
   // för tracking om vilken music som ska spelas
-  const [thisstartat, setStartat] = useState("");
   const audioEnabledRef = useRef(false);
   const storyBoxRef = useRef(null);
 
@@ -98,7 +73,6 @@ export default function Story() {
     );
   };
 
-  const textVector = splitChapter(chapterText);
 
   return (
     <div className="page">

@@ -1,7 +1,7 @@
 {
   "books": [
-    { "id": 1,  "title": "Apans Tass",           "filename": "monkeypaw",   "author": "W.W. Jacobs",     "chapteramt": 3 },
-    { "id": 2,  "title": "The Night Wire",       "filename": "nightwire",   "author": "H. F. Arnold",    "chapteramt": 1 },
+    { "id": 1,  "title": "Apans Tass",           "filename": "monkeypaw",   "author": "W.W. Jacobs",     "chapteramt": 3, "image": "/images/bild3.jpg" },
+    { "id": 2,  "title": "The Night Wire",       "filename": "nightwire",   "author": "H. F. Arnold",    "chapteramt": 1, "image": "/images/bild1.jpg" },
 
     { "id": 3,  "title": "Placeholder 3",        "filename": "story3",      "author": "Okänd",           "chapteramt": 1 },
     { "id": 4,  "title": "Placeholder 4",        "filename": "story4",      "author": "Okänd",           "chapteramt": 1 },
@@ -10,7 +10,8 @@
     { "id": 7,  "title": "Placeholder 7",        "filename": "story7",      "author": "Okänd",           "chapteramt": 1 },
     { "id": 8,  "title": "Placeholder 8",        "filename": "story8",      "author": "Okänd",           "chapteramt": 1 },
 
-    { "id": 9,  "title": "Placeholder 9",        "filename": "story9",      "author": "Okänd",           "chapteramt": 1 },
+    { "id": 9,  "title": "The Elves and the Shoemaker", "filename": "elvesandshoemaker", "author": "The Brothers Grimm", "chapteramt": 1, "image": "/images/bild5.jpg" },
+
     { "id": 10, "title": "Placeholder 10",       "filename": "story10",     "author": "Okänd",           "chapteramt": 1 },
     { "id": 11, "title": "Placeholder 11",       "filename": "story11",     "author": "Okänd",           "chapteramt": 1 },
     { "id": 12, "title": "Placeholder 12",       "filename": "story12",     "author": "Okänd",           "chapteramt": 1 },
