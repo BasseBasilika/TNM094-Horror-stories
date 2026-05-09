@@ -1,28 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../home.css";
+import storyData from '../data/books.json';
 
-const SCARY_STORIES = [
-  { id: 1, title: "Mycket Läskig",  image: "/images/bild1.jpg" },
-  { id: 2, title: "Ganska Läskig", image: "/images/bild2.jpg" },
-  { id: 3, title: "Mellan Läskig", image: "/images/bild3.jpg" },
-  { id: 4, title: "Lite Läskig",   image: "/images/bild4.jpg" },
-  { id: 5, title: "Superläskig",   image: "/images/bild3.jpg" },
-  { id: 6, title: "Dödsskräck",    image: "/images/bild4.jpg" },
-  { id: 7, title: "Mardröm",       image: "/images/bild1.jpg" },
-  { id: 8, title: "Mörker",        image: "/images/bild2.jpg" },
-];
 
-const CHILDREN_STORIES = [
-  { id: 9,  title: "Trollet i skogen",  image: "/images/bild8.jpg" },
-  { id: 10, title: "Enhörningens resa", image: "/images/bild6.jpg" },
-  { id: 11, title: "Magiska havet",     image: "/images/bild7.jpg" },
-  { id: 12, title: "Draken",            image: "/images/bild5.jpg" },
-  { id: 13, title: "Trollet",           image: "/images/bild8.jpg" },
-  { id: 14, title: "Resa",              image: "/images/bild6.jpg" },
-  { id: 15, title: "Magiska",           image: "/images/bild7.jpg" },
-  { id: 16, title: "Pyro",              image: "/images/bild5.jpg" },
-];
+
+const SCARY_STORIES = storyData.horrorbooks;
+
+const CHILDREN_STORIES = storyData.childrenbooks;
 
 
 
@@ -69,7 +54,9 @@ export default function Home({ category }) {
           <div
             key={story.id}
             className="home-box"
-            onClick={() => navigate(`/story/${story.id}/1`)}
+            onClick={() => {
+            window.location.href = `/story/${story.id}/1`;
+          }}
           >
             <p className="home-box-title">{story.title}</p>
             <div className="home-box-image">

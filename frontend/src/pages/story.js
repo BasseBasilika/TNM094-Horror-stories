@@ -25,12 +25,17 @@ export default function Story() {
   //const bookmark = Bookmark.find(b => b.id === Number(id));
   //const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
 
-  // läs in Story data
-  const theStory = storyData.books.find(s => s.id === Number(id));
-  const [chapterText, setChapterText] = useState("");
+  // läs in Story data  
+  const allStories = [
+    ...storyData.horrorbooks,
+    ...storyData.childrenbooks
+  ];
 
-  // mängden kapitel i historien
-  const maxChapter = theStory.chapteramt;
+  const theStory = allStories.find(
+    s => s.id === Number(id)
+  );
+
+  const [chapterText, setChapterText] = useState("");
 
   // ladda info om story
   useEffect(() => {
@@ -41,6 +46,8 @@ export default function Story() {
 
 }, [theStory, chapterNr]); // 👈 chapternr must be here
 
+  // mängden kapitel i historien
+  const maxChapter = theStory.chapteramt;
 
   // för tracking om vilken music som ska spelas
   const audioEnabledRef = useRef(false);
@@ -79,7 +86,10 @@ export default function Story() {
 
       {!started && (
         <div
-          onClick={() => setStarted(true)}
+          onClick={() => {
+            setStarted(true);
+            enableAudio();
+          }}
           style={{
             position: "fixed",
             inset: 0,
@@ -98,8 +108,9 @@ export default function Story() {
       )}
 
       <div className="footer">
-        <button className="btn" onClick={() => navigate("/")}>← Hem</button>
-        <button className="btn" onClick={() => enableAudio()}> SÄTT PÅ MUSIK </button>
+        <button className="btn" onClick={() => { // bytte till ladda om så musiken stoppar och ljudobjekt släpps
+            window.location.href = `/`;
+          }}>← Hem</button>
       </div>
 
       <div className="story-content">

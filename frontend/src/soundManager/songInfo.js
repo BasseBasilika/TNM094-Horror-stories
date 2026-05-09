@@ -5,7 +5,12 @@ import soundData from '../data/soundData.json'
 export default function musicInfo(id, chapterNr){
 
     // load related things to find the right audio
-    const theStory = storyData.books.find(s => s.id === Number(id));
+    const allStories = [
+        ...storyData.horrorbooks,
+        ...storyData.childrenbooks
+    ];
+
+    const theStory = allStories.find(s => s.id === Number(id));
     const fileName = theStory.filename;
 
     const storySounds = soundData.soundData.find(

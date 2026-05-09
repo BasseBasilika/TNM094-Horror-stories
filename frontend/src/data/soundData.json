@@ -64,9 +64,9 @@
             },
             {
               "src": "ClockTicking.wav",
-              "startAt": 0.52,
-              "stopAt": 0.7,
-              "loop": false,
+              "startAt": 0.59,
+              "stopAt": 0.69,
+              "loop": true,
               "volume": 0.20
             },
             {
@@ -98,7 +98,7 @@
             {
               "src": "OfficeAmbience2.wav",
               "startAt": 0.05,
-              "stopAt": 0.3,
+              "stopAt": 0.45,
               "loop": true,
               "volume": 0.30
             },
@@ -128,11 +128,11 @@
           "chapter": 1,
           "music": [
             {
-              "src": "dreamscape.mp3",
+              "src": "guitarLoop.wav",
               "startAt": 0.0,
-              "stopAt": 0.90,
-              "loop": false,
-              "volume": 0.20
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.50
             }
           ]
         }
