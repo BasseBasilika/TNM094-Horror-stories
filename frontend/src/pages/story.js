@@ -1,65 +1,95 @@
-/* eslint-disable no-unused-vars */
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../story.css";
 import storyData from '../data/books.json';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import RenderStoryText from "../keywords/text_button.js"; 
+import musicInfo from "../soundManager/songInfo.js";
+import playMusic from "../soundManager/playSong.js";
 
-const STORIES = [
-  { id: 1, title: "Mycket Läskig", description: "En mycket läskig historia..." },
-  { id: 2, title: "Ganska Läskig", description: "En ganska läskig historia..." },
-  { id: 3, title: "Mellan Läskig", description: "En mellan läskig historia..." },
-  { id: 4, title: "Lite Läskig", description: "En lite läskig historia..." },
-  { id: 5, title: "Mycket Läskig", description: "En mycket läskig historia..." },
-  { id: 6, title: "Ganska Läskig", description: "En ganska läskig historia..." },
-  { id: 7, title: "Mellan Läskig", description: "En mellan läskig historia..." },
-  { id: 8, title: "Lite Läskig", description: "En lite läskig historia..." },
-];
+// Används ej just nu, sparat som test
+/*const Bookmark = [
+  { id: 1, currentChapter: 1 },
+  { id: 2, currentChapter: 1 },
+]; */ 
 
-const Bookmark = [
-  { id: 1, currentChapter: 1, currentPage: 1 },
-  { id: 2, currentChapter: 1, currentPage: 2 },
-];
-
-function splitChapter(text) {
-  const words = text.split(" ").filter(word => word.length > 0);
-  const pages = [];
-  let index = 0;
-  while (index < words.length) {
-    pages.push(words[index]);
-    index++;
-  }
-  return pages.join(" ");
-}
 
 export default function Story() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+
+  // hitta id från URL
+  const { id, currentChapter } = useParams();
+  const chapterNr = Number(currentChapter);
+
+  //const navigate = useNavigate();
   const [started, setStarted] = useState(false);
 
-  const bookmark = Bookmark.find(b => b.id === Number(id));
-  const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1);
+  //const bookmark = Bookmark.find(b => b.id === Number(id));
+  //const [chapterNr, setChapterNr] = useState(bookmark?.currentChapter || 1)
 
-  const theStory = storyData.books.find(s => s.id === Number(id));
+  // läs in Story data  
+  const allStories = [
+    ...storyData.horrorbooks,
+    ...storyData.childrenbooks
+  ];
+
+  const theStory = allStories.find(
+    s => s.id === Number(id)
+  );
+
   const [chapterText, setChapterText] = useState("");
 
-  const maxChapter = theStory.chapteramt;
-
+  // ladda info om story 
   useEffect(() => {
     if (!theStory) return;
     fetch(`/books/${theStory.filename}/${chapterNr}.txt`)
       .then(res => res.text())
       .then(text => setChapterText(text));
-  }, [theStory, chapterNr]);
 
-  const textVector = splitChapter(chapterText);
+}, [theStory, chapterNr]); // 👈 chapternr must be here
+
+  // mängden kapitel i historien
+  const maxChapter = theStory.chapteramt;
+
+  // för tracking om vilken music som ska spelas
+  const audioEnabledRef = useRef(false);
+  const storyBoxRef = useRef(null);
+
+  const musicRef = useRef({
+    musicArray: [],
+    startPoints: [],
+    endPoints: [],
+    hasPlayed: []
+  });
+
+  useEffect(() => {
+    const [musicArray, startPoints, endPoints] = musicInfo(id, chapterNr);
+
+    musicRef.current = {
+      musicArray,
+      startPoints,
+      endPoints,
+      hasPlayed: musicArray.map(() => false)
+    };
+  }, [id, chapterNr]);
+
+  const enableAudio = () => {
+    audioEnabledRef.current = true;
+    playMusic(
+      storyBoxRef,
+      audioEnabledRef,
+      musicRef
+    );
+  };
+
 
   return (
     <div className="page">
 
       {!started && (
         <div
-          onClick={() => setStarted(true)}
+          onClick={() => {
+            setStarted(true);
+            enableAudio();
+          }}
           style={{
             position: "fixed",
             inset: 0,
@@ -78,13 +108,25 @@ export default function Story() {
       )}
 
       <div className="footer">
-        <button className="btn" onClick={() => navigate("/")}>← Hem</button>
+        <button className="btn" onClick={() => { // bytte till ladda om så musiken stoppar och ljudobjekt släpps
+            window.location.href = `/`;
+          }}>← Hem</button>
       </div>
 
       <div className="story-content">
         <h1 className="story-headning">{theStory.title}</h1>
         <h2 className="story-headning">{theStory.author}</h2>
-        <div className="story-box">
+        <div
+          className="story-box"
+          ref={storyBoxRef}
+          onScroll={() =>
+            playMusic(
+              storyBoxRef,
+              audioEnabledRef,
+              musicRef
+            )
+          }
+        >
           <div className="story-text">
             <RenderStoryText text={chapterText} />
           </div>
@@ -95,14 +137,18 @@ export default function Story() {
         <button
           className="btn"
           disabled={chapterNr <= 1}
-          onClick={() => setChapterNr(p => Math.max(1, p - 1))}
+          onClick={() => {
+            window.location.href = `/story/${id}/${chapterNr - 1}`;
+          }}
         >
           Förra kapitel
         </button>
         <button
           className="btn"
           disabled={chapterNr >= maxChapter}
-          onClick={() => setChapterNr(p => Math.max(1, p + 1))}
+          onClick={() => {
+            window.location.href = `/story/${id}/${chapterNr + 1}`;
+          }}
         >
           Nästa kapitel
         </button>
@@ -110,3 +156,4 @@ export default function Story() {
     </div>
   );
 }
+

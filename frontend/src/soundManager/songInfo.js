@@ -1,0 +1,49 @@
+import storyData from '../data/books.json';
+import soundData from '../data/soundData.json'
+
+// function to manage the music in each chapter
+export default function musicInfo(id, chapterNr){
+
+    // load related things to find the right audio
+    const allStories = [
+        ...storyData.horrorbooks,
+        ...storyData.childrenbooks
+    ];
+
+    const theStory = allStories.find(s => s.id === Number(id));
+    const fileName = theStory.filename;
+
+    const storySounds = soundData.soundData.find(
+         s => s.id === Number(id)
+    );
+
+    const chapterSounds = storySounds?.chapters.find(
+    c => c.chapter === chapterNr
+    );
+
+    const songs = chapterSounds?.music || [];
+
+    let songArray = []
+    let startPoints = []
+    let endPoints = []
+
+
+    // currently experimental to see if the correct thing plays
+    for (var i = 0; i < songs.length; i++){
+        const audio = new Audio(`/books/${fileName}/${songs[i].src}`)
+        audio.loop = songs[i].loop ?? false;
+        const startpoint = songs[i].startAt
+        const endpoint = songs[i].stopAt
+
+        songArray.push({
+            audio: audio,
+            volume: songs[i].volume ?? 0.8
+        });
+        startPoints.push(startpoint);
+        endPoints.push(endpoint);
+    }
+
+    return [songArray, startPoints, endPoints];
+}
+
+

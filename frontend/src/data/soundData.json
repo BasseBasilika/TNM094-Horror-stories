@@ -1,0 +1,142 @@
+{
+  "soundData": [
+    {
+      "id": 1,
+      "filename": "monkeypaw",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "backgroundmusic1.wav",
+              "startAt": 0.00,
+              "stopAt": 0.405,
+              "loop": true,
+              "volume": 0.8
+            },
+            {
+              "src": "fireplace.wav",
+              "startAt": 0.00,
+              "stopAt": 0.05,
+              "loop": true,
+              "volume": 0.5
+            },
+            {
+              "src": "SoftMusic.mp3",
+              "startAt": 0.405,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.30
+            }
+          ]
+          
+        },
+
+        {
+          "chapter": 2,
+          "music": [
+            {
+              "src": "SoftMusic.mp3",
+              "startAt": 0.0,
+              "stopAt": 0.51,
+              "loop": true,
+              "volume": 0.30
+            },
+            {
+              "src": "sinisterMusic.mp3",
+              "startAt": 0.51,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.20
+            }
+          ]
+        },
+
+        {
+          "chapter": 3,
+          "music": [
+            {
+              "src": "sinisterMusic.mp3",
+              "startAt": 0.0,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.30
+            },
+            {
+              "src": "ClockTicking.wav",
+              "startAt": 0.59,
+              "stopAt": 0.69,
+              "loop": true,
+              "volume": 0.20
+            },
+            {
+              "src": "violentWind.wav",
+              "startAt": 0.9,
+              "stopAt": 1,
+              "loop": true,
+              "volume": 0.30
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "filename": "nightwire",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "dreamscape.mp3",
+              "startAt": 0.0,
+              "stopAt": 0.50,
+              "loop": true,
+              "volume": 0.20
+            },
+            {
+              "src": "OfficeAmbience2.wav",
+              "startAt": 0.05,
+              "stopAt": 0.45,
+              "loop": true,
+              "volume": 0.30
+            },
+            {
+              "src": "veryAmbient.wav",
+              "startAt": 0.50,
+              "stopAt": 0.8,
+              "loop": true,
+              "volume": 0.40
+            },
+            {
+              "src": "fruitCakeHotel.mp3",
+              "startAt": 0.8,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "filename": "elvesandshoemaker",
+      "chapters": [
+        {
+          "chapter": 1,
+          "music": [
+            {
+              "src": "guitarLoop.wav",
+              "startAt": 0.0,
+              "stopAt": 1.1,
+              "loop": true,
+              "volume": 0.50
+            }
+          ]
+        }
+      ]
+    }
+
+  ]}
