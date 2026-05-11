@@ -37,7 +37,7 @@ export default function Story() {
 
   const [chapterText, setChapterText] = useState("");
 
-  // ladda info om story
+  // ladda info om story 
   useEffect(() => {
     if (!theStory) return;
     fetch(`/books/${theStory.filename}/${chapterNr}.txt`)
