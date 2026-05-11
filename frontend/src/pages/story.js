@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../story.css";
 import storyData from '../data/books.json';
 import { useEffect, useState, useRef } from "react";
@@ -7,10 +7,10 @@ import musicInfo from "../soundManager/songInfo.js";
 import playMusic from "../soundManager/playSong.js";
 
 // Används ej just nu, sparat som test
-const Bookmark = [
+/*const Bookmark = [
   { id: 1, currentChapter: 1 },
   { id: 2, currentChapter: 1 },
-]; 
+]; */ 
 
 
 export default function Story() {
@@ -19,7 +19,7 @@ export default function Story() {
   const { id, currentChapter } = useParams();
   const chapterNr = Number(currentChapter);
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [started, setStarted] = useState(false);
 
   //const bookmark = Bookmark.find(b => b.id === Number(id));
