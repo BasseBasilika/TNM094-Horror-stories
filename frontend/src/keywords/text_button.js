@@ -41,10 +41,11 @@ function clearTrail() {
   trail = [];
 }
 function handleMove(e) {
+  const isTouch = !e.touches;
   unlockAudio();  // ← add this line at the top
   const point = e.touches?.[0] ?? e;
   const cx = point.clientX;
-  const cy = point.clientY;
+  const cy = point.clientY - (isTouch ? 50 : 0);
 
   // reset the 30s fade timer on every move
   clearTimeout(fadeTimeout);
